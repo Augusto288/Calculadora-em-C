@@ -61,15 +61,17 @@ int main(int argc, char *argv[]) {
 		
 		//Define qual operação será realizada
 		printf("Qual operacao deseja fazer? \n");
-		printf("Digite (R) para raiz quadrada \n");
+		printf("Digite (Q) para raiz quadrada \n");
+		printf("Digite (C) para raiz cubica\n");
 		printf("Digite (P) para potenciacao \n");
-		printf("Digite (C) para arredondar um valor para cima (inteiro mais proximo) \n");
-		printf("Digite (B) para arredondar um valor para baixo (inteiro mais proximo) \n");
+		printf("Digite (M) para arredondar um valor para cima (inteiro mais proximo) \n");
+		printf("Digite (N) para arredondar um valor para baixo (inteiro mais proximo) \n");
 		scanf(" %c", &operacao);
 		
 		
 		switch(operacao){
-			case 'R':
+			case 'Q':
+			case 'q':
 				printf("Insira um numero maior que 0:\n");
 		        scanf(" %lf", &num1);
 		        
@@ -84,6 +86,7 @@ int main(int argc, char *argv[]) {
 			}
 			
 			case 'P':
+			case 'p':
 				printf("Insira o valor da base:\n");
 				scanf("%lf", &num1);
 				printf("Insira o valor do expoente:\n");
@@ -92,21 +95,40 @@ int main(int argc, char *argv[]) {
 				resultado = pow(num1, num2);
 				break;
 				
-			case 'C':
+			case 'M':
+			case 'm':
 				printf("Insira o valor que deseja arrdondar para cima: \n");
 				scanf("%lf", &num1);
 				
 				resultado = ceil(num1);
 				break;
 				
-			case 'B':
+			case 'N':
+			case 'n':
 				printf("Insira o valor que deseja arredondar para baixo: \n");
 				scanf("%lf", &num1);
 				
 				resultado = floor(num1);
 				break;
+
+			case 'C':
+			case 'c':
+				printf("Insira um numero maior que 0:\n");
+				scanf(" %lf", &num1);
+			
+				//O valor do radicando(num1) não pode ser menor que zero, se for uma mensagem de erro será exibida
+				if (num1 > 0){
+				
+				resultado = cbrt(num1);
+				break;
+			} else {
+				printf(" Erro, numero inserido e menor que 0");
+				return 1;
+
+	
 }
 }
+	}
     //Se o valor do tipo não for nem 1, nem 0 a calculadora dará erro
     else{
 		
@@ -116,8 +138,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	//Mostra o resultado da conta
-	printf("O resultado da operacao foi : %lf",resultado);
-	
-	return 0;
+
+	printf("O resultado da operacao foi : %lf \n",resultado);
+
+	system("pause");
+    return 0;
 	
 }
